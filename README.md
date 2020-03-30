@@ -7,4 +7,4 @@ Flutter Ui samples
 This project is a few samples on UI coding skills to showcase capabilities of Flutter Coding
 
 
-for business purposes contact us on[email]{mailto:soufi-43@hotmail.fr}
+for business purposes contact us on[email](mailto:soufi-43@hotmail.fr)
