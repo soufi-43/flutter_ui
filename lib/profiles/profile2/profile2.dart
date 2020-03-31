@@ -134,9 +134,9 @@ class _Profile2State extends State<Profile2> {
             _counters(context),
             _divider(context),
             ..._aboutMe(context),
-            SizedBox(height: 16,),
+            SizedBox(height: 1),
             _friends(context),
-             SizedBox(height: 16,),
+             SizedBox(height:1,),
              _contacts(context),
           ],
         ),
@@ -208,7 +208,7 @@ class _Profile2State extends State<Profile2> {
   List<Widget> _aboutMe(BuildContext context) {
     return [
       Padding(
-        padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16.0),
+        padding: EdgeInsets.symmetric(vertical: 2, horizontal: 16.0),
         child: Text(
           'ABOUT ME',
           style: TextStyle(
@@ -250,7 +250,7 @@ class _Profile2State extends State<Profile2> {
   Widget _contacts(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 80,
+      height: 100,
       padding: EdgeInsets.only(left: 16),
       child: ListView(
         scrollDirection: Axis.horizontal,
