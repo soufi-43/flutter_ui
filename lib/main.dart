@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home:Profile3(),
+      home:Profile1(),
     );
   }
 }
