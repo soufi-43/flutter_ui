@@ -10,6 +10,25 @@ class Profile3 extends StatefulWidget {
 
 class _Profile3State extends State<Profile3> {
   Profile _profile = ProfileProvider.getProfile();
+  bool _visible = false;
+
+  bool _visible2 = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Future.delayed(Duration(milliseconds: 500), () {
+      setState(() {
+        _visible = true;
+      });
+    });
+    Future.delayed(Duration(seconds: 1), () {
+      setState(() {
+        _visible2 = true;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,46 +102,66 @@ class _Profile3State extends State<Profile3> {
               child: _followButton(context),
             ),
             _divider(context),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24),
-              child: _counters(context),
-            ),
-            _divider(context),
-            Padding(
-              padding: EdgeInsets.all(24),
-              child: Text(
-                'PHOTOS(${_profile.photos.toString()})',
-                style: TextStyle(
-                  color: _textColor,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            _photos(context),
-            ... _aboutMe(context),
-            _friends(context),
-            _contacts(context),
+            ..._restOfContent(context),
           ],
         ),
       ),
     );
   }
 
-  Widget _profileImage(BuildContext context) {
-    return Positioned(
-      top: MediaQuery.of(context).size.height * 0.07 - 50,
-      left: MediaQuery.of(context).size.width / 2 - 50,
-      child: Container(
-        width: 100,
-        height: 100,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: ExactAssetImage(
-              'assets/shared/ahmad.png',
-            ),
-            fit: BoxFit.cover,
+  List<Widget> _restOfContent(BuildContext context) {
+    return [
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: 24),
+        child: _counters(context),
+      ),
+      _divider(context),
+      Padding(
+        padding: EdgeInsets.all(24),
+        child: Text(
+          'PHOTOS(${_profile.photos.toString()})',
+          style: TextStyle(
+            color: _textColor,
+            fontWeight: FontWeight.bold,
           ),
-          shape: BoxShape.circle,
+        ),
+      ),
+      AnimatedOpacity(
+          duration: Duration(milliseconds: 500),
+          opacity: _visible2?1:0,
+          child: _photos(context)),
+      ..._aboutMe(context),
+      _friends(context),
+      AnimatedOpacity(
+        duration: Duration(milliseconds: 500),
+        opacity: _visible2 ? 1 : 0,
+        child: _contacts(context),
+      ),
+    ];
+  }
+
+  Widget _profileImage(BuildContext context) {
+    double finalPosition = MediaQuery.of(context).size.height * 0.07 - 50;
+    double startPosition = MediaQuery.of(context).size.height * 0.07 - 75;
+    return AnimatedPositioned(
+      duration: Duration(milliseconds: 400),
+      top: _visible ? finalPosition : startPosition,
+      left: MediaQuery.of(context).size.width / 2 - 50,
+      child: AnimatedOpacity(
+        duration: Duration(milliseconds: 300),
+        opacity: _visible ? 1 : 0,
+        child: Container(
+          width: 100,
+          height: 100,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: ExactAssetImage(
+                'assets/shared/ahmad.png',
+              ),
+              fit: BoxFit.cover,
+            ),
+            shape: BoxShape.circle,
+          ),
         ),
       ),
     );
@@ -135,8 +174,10 @@ class _Profile3State extends State<Profile3> {
       child: MaterialButton(
         color: _buttonColor = Color(0xFFf05522),
         onPressed: () {},
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        child: AnimatedPadding(
+          duration: Duration(milliseconds: 500),
+          padding:
+              EdgeInsets.symmetric(horizontal: _visible ? 16 : 2, vertical: 8),
           child: Text(
             'FOLLOW',
             style: TextStyle(color: Colors.white),
@@ -248,42 +289,48 @@ class _Profile3State extends State<Profile3> {
     return [
       Padding(
         padding: EdgeInsets.symmetric(vertical: 24, horizontal: 24),
-        child: Text(
-          'ABOUT ME',
-          style: TextStyle(
-            color: _textColor,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 1.1,
+        child: AnimatedOpacity(
+          duration: Duration(milliseconds: 500),
+          opacity: _visible2 ?1:0,
+          child: Text(
+            'ABOUT ME',
+            style: TextStyle(
+              color: _textColor,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 1.1,
+            ),
           ),
         ),
       ),
       Padding(
         padding: EdgeInsets.symmetric(horizontal: 16),
-        child: Text(_profile.user.about,
+        child: Text(
+          _profile.user.about,
           style: TextStyle(
             color: _textColor,
             fontSize: 14,
             height: 1.4,
             letterSpacing: 1.1,
-          ),),
+          ),
+        ),
       ),
     ];
   }
+
   Widget _friends(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Text(
-        "FRIENDS(${_profile.friends.toString()
-        })",
+        "FRIENDS(${_profile.friends.toString()})",
         style: TextStyle(
           color: _textColor,
           fontSize: 16.0,
           fontWeight: FontWeight.bold,
         ),
-
       ),
     );
   }
+
   Widget _contacts(BuildContext context) {
     return Container(
       width: double.infinity,
@@ -291,7 +338,7 @@ class _Profile3State extends State<Profile3> {
       padding: EdgeInsets.only(left: 16),
       child: ListView(
         scrollDirection: Axis.horizontal,
-        children: List.generate(25, (index){
+        children: List.generate(25, (index) {
           return Container(
             width: 100,
             margin: EdgeInsets.only(right: 24),
@@ -299,18 +346,12 @@ class _Profile3State extends State<Profile3> {
               image: DecorationImage(
                 image: ExactAssetImage('assets/shared/ahmad.png'),
                 fit: BoxFit.cover,
-
               ),
               shape: BoxShape.circle,
-
-
             ),
           );
         }),
       ),
     );
-
-
   }
-
 }
