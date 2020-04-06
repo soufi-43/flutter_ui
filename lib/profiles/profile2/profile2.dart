@@ -156,7 +156,7 @@ class _Profile2State extends State<Profile2> {
           children: <Widget>[
             _counters(context),
             _divider(context),
-            ..._aboutMe(context),
+            ... _aboutMe(context),
             SizedBox(height: 1),
             _friends(context),
              SizedBox(height:1,),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterui/chat/chat1/chat_list.dart';
 
 import 'package:flutterui/profiles/profile1/profile_1.dart';
 import 'package:flutterui/profiles/profile2/profile2.dart';
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home:Profile5(),
+      home:ChatList(),
     );
   }
 }
