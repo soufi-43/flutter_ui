@@ -12,7 +12,7 @@ class ChatList extends StatefulWidget {
 
 class _ChatListState extends State<ChatList>
     with SingleTickerProviderStateMixin {
-  List<Conversation> _conversation = MessageProvider.getConversation();
+  List<Conversation> _conversation = MessageProvider.getConversations();
   TabController _tabController;
 
   @override

@@ -11,9 +11,9 @@ class ConversationList extends StatefulWidget {
 
 class _ConversationListState extends State<ConversationList> {
   static List<List<Conversation>> conversations = [
-    MessageProvider.getConversation(),
-    MessageProvider.getConversation(),
-    MessageProvider.getConversation(),
+    MessageProvider.getConversations(),
+    MessageProvider.getConversations(),
+    MessageProvider.getConversations(),
   ];
 
   Color _darkText = Color(0xFF111111);
