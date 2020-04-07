@@ -46,6 +46,7 @@ flutter:
   assets:
     - assets/profiles/
     - assets/shared/
+    - assets/registration/
 
   #  - images/a_dot_ham.jpeg
 
