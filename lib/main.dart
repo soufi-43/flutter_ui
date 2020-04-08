@@ -8,6 +8,7 @@ import 'package:flutterui/profiles/profile3/profile3.dart';
 import 'package:flutterui/profiles/profile4/profile4.dart';
 import 'package:flutterui/profiles/profile5/profile5.dart';
 import 'package:flutterui/registration/registration1.dart';
+import 'package:flutterui/registration/registration2.dart';
 
 import 'chat/chat2/chat_screen.dart';
 
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home:Registration1(),
+      home:Registration2(),
     );
   }
 }
