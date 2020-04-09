@@ -88,6 +88,7 @@ class _Registration3State extends State<Registration3> {
         Form(
           child: Container(
             width: 220,
+
             child: Column(
               children: <Widget>[
                 TextFormField(
