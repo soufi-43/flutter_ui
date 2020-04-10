@@ -95,8 +95,7 @@ class Background extends CustomPainter {
     Path path = Path();
 
     Offset offset1 = Offset(size.width - (size.width * 0.1), size.height * 0.1);
-    Offset offset2 =
-        Offset(size.width - (size.width * 0.1) - 3, size.height * 0.1);
+    Offset offset2 = Offset(size.width - (size.width * 0.1) - 3, size.height * 0.1);
 
     Rect rect = Rect.fromCircle(center: offset2, radius: 155);
     path.addOval(rect);
